@@ -36,6 +36,35 @@
     const fn_es6_oneline = (x, y) => (x + y);
     log(fn_es6_oneline(2, 10));
 
+    //ES5
+    function sum(v1, v2) {
+        v2 = v2 || 100; // 변수를 가변적으로 받고 싶을 때
+        return v1 + v2;
+    }
+    log(sum(10, 20));
+    log(sum(10));
+
+    //ES6 변수를 안에서 설정할 수 있음.
+    function sum2(v1 = 100, v2 = 100) {
+        return v1 + v2;
+    }
+    log(sum2(10, 20));
+    log(sum2(10));
+
+    function sum3(...v3) { // spread parameter
+        log(v3);
+        var sum3 = 0;
+        for (var i = 0; i < v3.length; i++) {
+            sum3 += v3[i];
+        }
+        return sum3;
+    }
+    log(sum3(1, 2, 3, 4, 5, () => {}, 6, 7)); // 숫자로 인식될 때는 숫자로 더하다가, 그 다음부터는 스트링으로 더해진다.
+
+    var pre = [1, 2, 3];
+    var newPre = [1, 2, 3, 4, ...pre, 7, 8, 9]; // 배열 중간에 배열을 넣기 위해 spread operator(...)를 쓴다.
+    log(newPre);
+
     // String
     var str = "2019-02-13 12:33:34";
     log(str.substr(0, 10)); // 2019-02-13
@@ -129,4 +158,46 @@
     set.add("C");
     log(set, set.size);
 
+    //WeakSet
+    var set2 = new WeakSet(); // 참조변수만 들어간다. 객체만 넣을 수 있다.
+    set2.add(() => {});
+    set2.add({});
+
+    //Map
+    var map = new Map();
+    map.set(0, "영"); // key, value
+    map.set('A', "String A");
+    map.set('B', "String B");
+    map.set(() => {}, "String A");
+
+    var arr = ["A", "B", "C"];
+    var arrN = [1, 2, 3];
+
+    // console.clear();
+
+    Array.prototype.getMin = function () {}; // 모든 배열에 값이 들어간다. 이런식으로 붙이면 for in을 못 쓴다.
+    Array.prototype.getMax = function () {};
+
+    for (var i in arr) { // for in 문은 ES6에서는 좀 지양하는 편이다.
+        log(i, arr[i]);
+    }
+
+    for (var v of arr) { // 정상작동하는 대신에 value가 나옴
+        log(v);
+    }
+
+    for (var [k, v] of map) {
+        log(k, v);
+    }
+
+    arr.forEach(function (k, v) {
+        log(k, v);
+    }); // jQuery에서 each랑 같다. 하지만, callback이기 때문에 performance가 for of가 더 좋다.
+
+    // console.clear();
+    var k = map.get('A'); // A에 있는 키를 가져올 때. get 키!
+    log(k);
+    log(map.keys());
+    log(map.values());
+    log(map.has("A")); // 키 A가 존재하느냐?
 </script>
