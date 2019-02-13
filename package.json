@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/afko/2019-es6-lect/issues"
   },
-  "homepage": "https://github.com/afko/2019-es6-lect#readme"
+  "homepage": "https://github.com/afko/2019-es6-lect#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "underscore": "^1.9.1"
+  }
 }
